@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   codexion.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/09 12:22:05 by gortiz-j          #+#    #+#             */
+/*   Updated: 2026/09/09 12:22:06 by gortiz-j         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CODEXION_H
 #define CODEXION_H
 
@@ -20,11 +32,11 @@
 
 typedef struct s_simulation
 {
-	t_args          args;
-	t_coder         *coders;
-	t_dongle        *dongles;
-	t_monitor       monitor;
-	int             stop_simulation;
+	t_args			args;
+	t_coder			*coders;
+	t_dongle		*dongles;
+	t_monitor		monitor;
+	int				stop_simulation;
 	pthread_mutex_t stop_mutex;
 }   t_simulation;
 

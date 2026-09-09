@@ -2,7 +2,7 @@
 #                                   CODEXION                                   #
 # **************************************************************************** #
 
-NAME        = codexion
+NAME        = codex
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -pthread
