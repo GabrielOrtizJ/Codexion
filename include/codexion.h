@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:22:05 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:22:06 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/14 11:53:40 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ typedef struct s_simulation
 	t_dongle		*dongles;
 	t_monitor		monitor;
 	int				stop_simulation;
+	int			active_compilers;
 	pthread_mutex_t stop_mutex;
+	pthread_mutex_t active_mutex;
 }   t_simulation;
 
 #endif

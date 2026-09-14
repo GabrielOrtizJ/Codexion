@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:22:45 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:22:46 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/14 11:30:33 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void coder_compile(t_coder *c)
 
 	log_action(&sim->monitor.log, c->id, "is compiling");
 	usleep(sim->args.time_to_compile * 1000);
-
-	c->compile_count++;
 }
 
 void coder_debug(t_coder *c)

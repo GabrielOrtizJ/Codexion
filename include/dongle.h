@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:22:30 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:22:31 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/14 11:47:35 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_dongle
 	pthread_mutex_t mutex;
 	pthread_cond_t  cond;
 	long            last_release_time;
+	int             owner_id;
 	t_queue         queue;
 }   t_dongle;
 

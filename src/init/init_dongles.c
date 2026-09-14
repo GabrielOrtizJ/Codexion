@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:23:21 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:23:22 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/14 11:47:35 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int init_dongles(t_simulation *sim)
 		pthread_mutex_init(&d->mutex, NULL);
 		pthread_cond_init(&d->cond, NULL);
 		d->last_release_time = 0;
+		d->owner_id = -1;
 		queue_init(&d->queue, sim->args.number_of_coders);
 		i++;
 	}
