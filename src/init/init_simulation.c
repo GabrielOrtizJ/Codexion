@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:23:26 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/14 11:53:40 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:03:53 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,18 @@
 #include "dongle.h"
 #include "monitor.h"
 
-
-int init_simulation(t_simulation *sim, t_args *args)
+int	init_simulation(t_simulation *sim, t_args *args)
 {
 	sim->args = *args;
 	sim->stop_simulation = 0;
 	sim->active_compilers = 0;
-
 	pthread_mutex_init(&sim->stop_mutex, NULL);
 	pthread_mutex_init(&sim->active_mutex, NULL);
-
 	if (init_coders(sim) != 0)
 		return (1);
 	if (init_dongles(sim) != 0)
 		return (1);
 	if (init_monitor(sim) != 0)
 		return (1);
-
 	return (0);
 }

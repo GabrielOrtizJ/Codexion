@@ -6,14 +6,14 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:24:08 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:24:10 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:16:28 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scheduler.h"
 #include "utils.h"
 
-long fifo_priority(void)
+long	fifo_priority(void)
 {
-	return timestamp_ms();
+	return (timestamp_ms());
 }

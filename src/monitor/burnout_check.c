@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:23:53 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:23:54 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:13:24 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 #include "log.h"
 #include "utils.h"
 
-int check_burnout(t_monitor *m)
+int	check_burnout(t_monitor *m)
 {
-	t_simulation *sim = m->sim;
-	long now = timestamp_ms();
+	t_simulation	*sim;
+	long			now;		
 
+	sim = m->sim;
+	now = timestamp_ms();
 	pthread_mutex_lock(&sim->stop_mutex);
 	if (sim->stop_simulation)
 	{
 		pthread_mutex_unlock(&sim->stop_mutex);
-		return 1;
+		return (1);
 	}
 	pthread_mutex_unlock(&sim->stop_mutex);
-
 	for (int i = 0; i < sim->args.number_of_coders; i++)
 	{
 		t_coder *c = &sim->coders[i];
@@ -44,8 +45,8 @@ int check_burnout(t_monitor *m)
 			for (int j = 0; j < sim->args.number_of_coders; j++)
 				pthread_cond_broadcast(&sim->dongles[j].cond);
 			log_action(&m->log, c->id, "burned out");
-			return 1;
+			return (1);
 		}
 	}
-	return 0;
+	return (0);
 }

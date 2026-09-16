@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:22:58 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/14 12:34:32 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 11:58:30 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 #include "dongle.h"
 #include "log.h"
 
-static int all_coders_reached_target(t_simulation *sim)
+static int	all_coders_reached_target(t_simulation *sim)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < sim->args.number_of_coders)
 	{
 		pthread_mutex_lock(&sim->coders[i].timestamp_mutex);
-		if (sim->coders[i].compile_count < sim->args.number_of_compiles_required)
+		if (sim->coders[i].compile_count
+			< sim->args.number_of_compiles_required)
 		{
 			pthread_mutex_unlock(&sim->coders[i].timestamp_mutex);
 			return (0);
@@ -34,13 +35,13 @@ static int all_coders_reached_target(t_simulation *sim)
 	return (1);
 }
 
-static void coder_loop(t_coder *c)
+static void	coder_loop(t_coder *c)
 {
-	t_simulation *sim = c->sim;
-	t_dongle     *left;
-	t_dongle     *right;
-	int          stop;
-	int          pair_index;
+	t_simulation	*sim = c->sim;
+	t_dongle		*left;
+	t_dongle		*right;
+	int				stop;
+	int				pair_index;
 
 	if (sim->args.number_of_coders < 2)
 		return ;
@@ -117,8 +118,8 @@ static void coder_loop(t_coder *c)
 
 void *coder_thread(void *ptr)
 {
-	t_coder *c = (t_coder *)ptr;
-
+	t_coder	*c = (t_coder *)ptr;
+	c = (t_coder *)ptr;
 	coder_loop(c);
 	return (NULL);
 }

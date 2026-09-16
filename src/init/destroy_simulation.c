@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:23:16 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:23:17 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:01:42 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 #include "dongle.h"
 #include "monitor.h"
 
-
-void destroy_simulation(t_simulation *sim)
+void	destroy_simulation(t_simulation *sim)
 {
 	int i;
 

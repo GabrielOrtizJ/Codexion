@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:23:06 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/14 11:47:35 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:00:29 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "dongle.h"
 #include "utils.h"
 
-void dongle_release(t_dongle *d)
+void	dongle_release(t_dongle *d)
 {
 	pthread_mutex_lock(&d->mutex);
 	d->owner_id = -1;

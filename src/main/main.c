@@ -6,17 +6,17 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:23:50 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:23:51 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:09:06 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_args       args;
-	t_simulation sim;
-	int          i;
+	t_args			args;
+	t_simulation	sim;
+	int				i;
 
 	if (parse_args(ac, av, &args) != 0 || validate_args(&args) != 0)
 		return (1);

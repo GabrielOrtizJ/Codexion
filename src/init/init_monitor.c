@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:23:23 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:23:24 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:04:05 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "monitor.h"
 #include "log.h"
 
-int init_monitor(t_simulation *sim)
+int	init_monitor(t_simulation *sim)
 {
 	sim->monitor.sim = sim;
 	sim->monitor.log.start_time = time_ms();

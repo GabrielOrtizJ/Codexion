@@ -6,14 +6,14 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:24:12 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:24:13 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:16:19 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scheduler.h"
 #include "coder.h"
 
-long edf_priority(t_coder *c)
+long	edf_priority(t_coder *c)
 {
-	return coder_deadline(c);
+	return (coder_deadline(c));
 }

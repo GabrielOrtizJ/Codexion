@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:23:29 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:23:30 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:07:05 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "utils.h"
 #include <stdio.h>
 
-void log_action(t_log *log, int coder_id, const char *msg)
+void	log_action(t_log *log, int coder_id, const char *msg)
 {
-	long ts;
+	long	ts;
 
 	ts = time_ms() - log->start_time;
 	pthread_mutex_lock(&log->mutex);

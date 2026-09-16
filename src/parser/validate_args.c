@@ -6,14 +6,14 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:24:05 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/14 11:47:35 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:15:49 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "args.h"
 #include <stdio.h>
 
-int validate_args(t_args *a)
+int	validate_args(t_args *a)
 {
 	if (a->number_of_coders < 2
 		|| a->time_to_burnout <= 0
@@ -23,7 +23,8 @@ int validate_args(t_args *a)
 		|| a->number_of_compiles_required <= 0
 		|| a->dongle_cooldown < 0)
 	{
-		fprintf(stderr, "Invalid arguments: number_of_coders must be at least 2 and the rest must be positive\n");
+		fprintf(stderr, "Invalid arguments: number_of_coders must be at least 2"
+			" and the rest must be positive\n");
 		return (1);
 	}
 	return (0);

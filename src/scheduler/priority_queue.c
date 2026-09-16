@@ -6,71 +6,78 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:24:15 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:24:16 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/16 12:21:28 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scheduler.h"
 #include <stdlib.h>
 
-static void swap_nodes(t_queue_node *a, t_queue_node *b)
+static void	swap_nodes(t_queue_node *a, t_queue_node *b)
 {
-	t_queue_node tmp = *a;
+	t_queue_node	tmp;
+
+	tmp = *a;
 	*a = *b;
 	*b = tmp;
 }
 
-void queue_init(t_queue *q, int capacity)
+void	queue_init(t_queue *q, int capacity)
 {
 	q->nodes = (t_queue_node *)malloc(sizeof(t_queue_node) * capacity);
 	q->size = 0;
 	q->capacity = capacity;
 }
 
-static void heapify_up(t_queue *q, int idx)
+static void	heapify_up(t_queue *q, int idx)
 {
+	int	parent;
+
 	while (idx > 0)
 	{
-		int parent = (idx - 1) / 2;
+		parent = (idx - 1) / 2;
 		if (q->nodes[idx].priority >= q->nodes[parent].priority)
-			break;
+			break ;
 		swap_nodes(&q->nodes[idx], &q->nodes[parent]);
 		idx = parent;
 	}
 }
 
-void queue_push(t_queue *q, int coder_id, long priority)
+void	queue_push(t_queue *q, int coder_id, long priority)
 {
 	if (q->size >= q->capacity)
-		return;
+		return ;
 	q->nodes[q->size].coder_id = coder_id;
 	q->nodes[q->size].priority = priority;
 	heapify_up(q, q->size);
 	q->size++;
 }
 
-static void heapify_down(t_queue *q, int idx)
+static void	heapify_down(t_queue *q, int idx)
 {
+	int	left;
+	int	right;
+	int	smallest;
+
 	while (1)
 	{
-		int left = 2 * idx + 1;
-		int right = 2 * idx + 2;
-		int smallest = idx;
-
+		left = 2 * idx + 1;
+		right = 2 * idx + 2;
+		smallest = idx;
 		if (left < q->size && q->nodes[left].priority < q->nodes[smallest].priority)
 			smallest = left;
 		if (right < q->size && q->nodes[right].priority < q->nodes[smallest].priority)
 			smallest = right;
 		if (smallest == idx)
-			break;
+			break ;
 		swap_nodes(&q->nodes[idx], &q->nodes[smallest]);
 		idx = smallest;
 	}
 }
 
-int queue_pop(t_queue *q)
+int	queue_pop(t_queue *q)
 {
-	int coder_id;
+	int	coder_id;
 
 	if (q->size == 0)
 		return (-1);
@@ -81,7 +88,7 @@ int queue_pop(t_queue *q)
 	return (coder_id);
 }
 
-int queue_is_empty(t_queue *q)
+int	queue_is_empty(t_queue *q)
 {
 	return (q->size == 0);
 }
