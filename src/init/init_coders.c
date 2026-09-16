@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:23:18 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/09 12:23:19 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/14 16:42:05 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int init_coders(t_simulation *sim)
 	i = 0;
 	while (i < sim->args.number_of_coders)
 	{
-		t_coder *c = &sim->coders[i];
-		c->id = i + 1;
-		c->compile_count = 0;
-		c->last_compile_start = time_ms();
-		c->sim = sim;
-		pthread_mutex_init(&c->timestamp_mutex, NULL);
+		t_coder *coder = &sim->coders[i];
+		coder->id = i + 1;
+		coder->compile_count = 0;
+		coder->last_compile_start = time_ms();
+		coder->sim = sim;
+		pthread_mutex_init(&coder->timestamp_mutex, NULL);
 		i++;
 	}
 	return (0);
