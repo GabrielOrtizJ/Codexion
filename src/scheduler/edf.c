@@ -15,5 +15,10 @@
 
 long	edf_priority(t_coder *c)
 {
-	return (coder_deadline(c));
+	long		deadline;
+
+	pthread_mutex_lock(&c->timestamp_mutex);
+	deadline = coder_deadline(c);
+	pthread_mutex_unlock(&c->timestamp_mutex);
+	return (deadline);
 }

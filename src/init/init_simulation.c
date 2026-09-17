@@ -20,9 +20,7 @@ int	init_simulation(t_simulation *sim, t_args *args)
 {
 	sim->args = *args;
 	sim->stop_simulation = 0;
-	sim->active_compilers = 0;
 	pthread_mutex_init(&sim->stop_mutex, NULL);
-	pthread_mutex_init(&sim->active_mutex, NULL);
 	if (init_coders(sim) != 0)
 		return (1);
 	if (init_dongles(sim) != 0)

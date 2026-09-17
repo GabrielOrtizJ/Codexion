@@ -18,7 +18,7 @@
 
 typedef struct s_monitor
 {
-	pthread_t			hread;
+	pthread_t			thread;
 	struct s_simulation	*sim;
 	t_log				log;
 }	t_monitor;

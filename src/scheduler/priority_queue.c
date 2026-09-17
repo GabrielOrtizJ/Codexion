@@ -13,11 +13,19 @@
 #include "scheduler.h"
 #include <stdlib.h>
 
+static int	node_before(t_queue_node *first, t_queue_node *second)
+{
+	if (first->priority != second->priority)
+		return (first->priority < second->priority);
+	return (first->order < second->order);
+}
+
 void	queue_init(t_queue *q, int capacity)
 {
 	q->nodes = (t_queue_node *)malloc(sizeof(t_queue_node) * capacity);
 	q->size = 0;
 	q->capacity = capacity;
+	q->next_order = 0;
 }
 
 void	queue_push(t_queue *q, int coder_id, long priority)
@@ -30,12 +38,13 @@ void	queue_push(t_queue *q, int coder_id, long priority)
 		return ;
 	q->nodes[q->size].coder_id = coder_id;
 	q->nodes[q->size].priority = priority;
+	q->nodes[q->size].order = q->next_order++;
 	idx = q->size;
 	q->size++;
 	while (idx > 0)
 	{
 		parent = (idx - 1) / 2;
-		if (q->nodes[idx].priority >= q->nodes[parent].priority)
+		if (!node_before(&q->nodes[idx], &q->nodes[parent]))
 			break ;
 		tmp = q->nodes[idx];
 		q->nodes[idx] = q->nodes[parent];
@@ -57,10 +66,10 @@ static void	heapify_down(t_queue *q, int idx)
 		right = 2 * idx + 2;
 		smallest = idx;
 		if (left < q->size)
-			if (q->nodes[left].priority < q->nodes[smallest].priority)
+			if (node_before(&q->nodes[left], &q->nodes[smallest]))
 				smallest = left;
 		if (right < q->size)
-			if (q->nodes[right].priority < q->nodes[smallest].priority)
+			if (node_before(&q->nodes[right], &q->nodes[smallest]))
 				smallest = right;
 		if (smallest == idx)
 			break ;
@@ -74,19 +83,12 @@ static void	heapify_down(t_queue *q, int idx)
 int	queue_pop(t_queue *q)
 {
 	int				coder_id;
-	t_queue_node	tmp;
 
 	if (q->size == 0)
 		return (-1);
 	coder_id = q->nodes[0].coder_id;
-	tmp = q->nodes[0];
 	q->nodes[0] = q->nodes[q->size - 1];
 	q->size--;
 	heapify_down(q, 0);
 	return (coder_id);
-}
-
-int	queue_is_empty(t_queue *q)
-{
-	return (q->size == 0);
 }

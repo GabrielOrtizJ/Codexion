@@ -18,7 +18,7 @@
 
 static void	destroy_coders(t_simulation *sim)
 {
-	int		i;
+	int			i;
 
 	if (sim->coders == NULL)
 		return ;
@@ -34,7 +34,7 @@ static void	destroy_coders(t_simulation *sim)
 
 static void	destroy_dongles(t_simulation *sim)
 {
-	int		i;
+	int			i;
 
 	if (sim->dongles == NULL)
 		return ;

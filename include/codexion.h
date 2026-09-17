@@ -37,9 +37,7 @@ typedef struct s_simulation
 	t_dongle		*dongles;
 	t_monitor		monitor;
 	int				stop_simulation;
-	int				active_compilers;
 	pthread_mutex_t	stop_mutex;
-	pthread_mutex_t	active_mutex;
 }	t_simulation;
 
 #endif
