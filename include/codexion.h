@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:22:05 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/16 11:46:00 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/21 15:52:16 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include "utils.h"
 # include "log.h"
 # include "scheduler.h"
-# include "dongle_queue.h"
 # include "coder.h"
 # include "dongle.h"
 # include "monitor.h"

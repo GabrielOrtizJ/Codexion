@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:22:30 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/16 11:47:23 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/21 15:51:06 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ typedef struct s_dongle
 	t_queue			queue;
 }	t_dongle;
 
+
 int		dongle_take(t_coder *c, t_dongle *d);
 void	dongle_release(t_dongle *d);
+
+void	dongle_queue_push(struct s_dongle *d, int coder_id, long priority);
+int		dongle_queue_pop(struct s_dongle *d);
+int		dongle_queue_peek(struct s_dongle *d);
 
 #endif
