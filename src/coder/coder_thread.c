@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:22:58 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/21 16:43:34 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/25 17:07:46 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,16 @@ static void	finish_compile(t_coder *c, t_dongle *left, t_dongle *right)
 	coder_compile(c);
 	dongle_release(left);
 	dongle_release(right);
+	if (c->sim->stop_simulation)
+		return ;
 	pthread_mutex_lock(&c->timestamp_mutex);
 	c->compile_count++;
 	pthread_mutex_unlock(&c->timestamp_mutex);
+	if (c->sim->stop_simulation)
+		return ;
 	coder_debug(c);
+	if (c->sim->stop_simulation)
+		return ;
 	coder_refactor(c);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gortiz-j <gortiz-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/09 12:22:30 by gortiz-j          #+#    #+#             */
-/*   Updated: 2026/09/21 15:51:06 by gortiz-j         ###   ########.fr       */
+/*   Updated: 2026/09/25 17:02:47 by gortiz-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_dongle
 	int				owner_id;
 	t_queue			queue;
 }	t_dongle;
-
 
 int		dongle_take(t_coder *c, t_dongle *d);
 void	dongle_release(t_dongle *d);
