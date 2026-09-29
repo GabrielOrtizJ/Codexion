@@ -15,10 +15,10 @@
 #include "dongle.h"
 #include "log.h"
 
-static int	take_two_dongles(t_coder *c, t_dongle *left, t_dongle *right)
+static int take_two_dongles(t_coder *c, t_dongle *left, t_dongle *right)
 {
-	t_dongle		*first;
-	t_dongle		*second;
+	t_dongle *first;
+	t_dongle *second;
 
 	if (left < right)
 	{
@@ -44,34 +44,43 @@ static int	take_two_dongles(t_coder *c, t_dongle *left, t_dongle *right)
 	return (1);
 }
 
-static void	finish_compile(t_coder *c, t_dongle *left, t_dongle *right)
+static void finish_compile(t_coder *c, t_dongle *left, t_dongle *right)
 {
 	coder_compile(c);
 	dongle_release(left);
 	dongle_release(right);
 	if (c->sim->stop_simulation)
-		return ;
+		return;
+	coder_debug(c);
+	if (c->sim->stop_simulation)
+		return;
+	coder_refactor(c);
+	if (c->sim->stop_simulation)
+		return;
 	pthread_mutex_lock(&c->timestamp_mutex);
 	c->compile_count++;
 	pthread_mutex_unlock(&c->timestamp_mutex);
-	if (c->sim->stop_simulation)
-		return ;
-	coder_debug(c);
-	if (c->sim->stop_simulation)
-		return ;
-	coder_refactor(c);
 }
 
-static int	stop_threads(t_simulation *sim)
+static int coder_reached_compile_limit(t_coder *c)
 {
-	int			i;
+	int finished;
+
+	pthread_mutex_lock(&c->timestamp_mutex);
+	finished = (c->compile_count >= c->sim->args.number_of_compiles_required);
+	pthread_mutex_unlock(&c->timestamp_mutex);
+	return (finished);
+}
+
+static int stop_threads(t_simulation *sim)
+{
+	int i;
 
 	i = 0;
 	while (i < sim->args.number_of_coders)
 	{
 		pthread_mutex_lock(&sim->coders[i].timestamp_mutex);
-		if (sim->coders[i].compile_count
-			< sim->args.number_of_compiles_required)
+		if (sim->coders[i].compile_count < sim->args.number_of_compiles_required)
 		{
 			pthread_mutex_unlock(&sim->coders[i].timestamp_mutex);
 			return (0);
@@ -91,12 +100,12 @@ static int	stop_threads(t_simulation *sim)
 	return (1);
 }
 
-static void	coder_loop(t_coder *c)
+static void coder_loop(t_coder *c)
 {
-	t_simulation	*sim;
-	t_dongle		*left;
-	t_dongle		*right;
-	int				stop;
+	t_simulation *sim;
+	t_dongle *left;
+	t_dongle *right;
+	int stop;
 
 	sim = c->sim;
 	left = &sim->dongles[(c->id - 1) % sim->args.number_of_coders];
@@ -107,16 +116,18 @@ static void	coder_loop(t_coder *c)
 		stop = sim->stop_simulation;
 		pthread_mutex_unlock(&sim->stop_mutex);
 		if (stop || stop_threads(sim))
-			break ;
+			break;
+		if (coder_reached_compile_limit(c))
+			break;
 		if (take_two_dongles(c, left, right) == 0)
-			continue ;
+			continue;
 		finish_compile(c, left, right);
 	}
 }
 
-void	*coder_thread(void *ptr)
+void *coder_thread(void *ptr)
 {
-	t_coder	*c;
+	t_coder *c;
 
 	c = (t_coder *)ptr;
 	coder_loop(c);
